@@ -8,263 +8,530 @@
     <title>Spice Garden Restaurant</title>
 
     <style>
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: Arial, sans-serif;
-            background: #fff8f0;
+            background: #fff8ef;
             color: #333;
-            line-height: 1.6;
         }
 
-        /* Header */
+        /* HEADER */
+
         header {
-            background: #7b1e1e;
-            color: white;
+            min-height: 55vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 25px 15px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    rgba(80, 20, 10, 0.75),
+                    rgba(180, 60, 20, 0.75)
+                ),
+                linear-gradient(135deg, #7b1e1e, #e67e22);
+
+            padding: 40px 20px;
+
+            animation: headerAppear 1.2s ease;
         }
 
         header h1 {
-            font-size: 32px;
-            margin-bottom: 5px;
+            font-size: 55px;
+            margin-bottom: 10px;
+            animation: slideDown 1s ease;
         }
 
         header p {
-            font-size: 16px;
-            margin-bottom: 12px;
+            font-size: 20px;
+            margin-bottom: 25px;
+            animation: fadeIn 2s ease;
         }
 
-        /* Navigation */
+        /* BUTTON */
+
+        .button {
+            display: inline-block;
+
+            background: #ffb703;
+            color: #3d1717;
+
+            padding: 13px 28px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .button:hover {
+            background: #ffd166;
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* NAVIGATION */
+
         nav {
             background: #3d1717;
-            padding: 12px;
+
+            padding: 15px;
+
             text-align: center;
+
             position: sticky;
+
             top: 0;
-            z-index: 100;
+
+            z-index: 1000;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
 
         nav a {
             color: white;
+
             text-decoration: none;
-            margin: 0 15px;
+
+            margin: 0 18px;
+
             font-weight: bold;
+
+            transition: 0.3s;
         }
 
         nav a:hover {
-            color: #ffcc80;
+            color: #ffb703;
         }
 
-        /* Common Sections */
+        /* SECTIONS */
+
         section {
-            max-width: 1000px;
+            max-width: 1100px;
+
             margin: auto;
-            padding: 45px 20px;
+
+            padding: 70px 20px;
         }
 
         h2 {
             text-align: center;
-            color: #7b1e1e;
-            margin-bottom: 25px;
-            font-size: 28px;
+
+            color: #8b2c1c;
+
+            font-size: 34px;
+
+            margin-bottom: 35px;
         }
 
-        /* Buttons */
-        .button {
-            display: inline-block;
-            background: #7b1e1e;
-            color: white;
-            padding: 11px 22px;
-            border-radius: 6px;
-            text-decoration: none;
-            margin-top: 8px;
-            border: none;
-            cursor: pointer;
+        h2::after {
+            content: "";
+
+            display: block;
+
+            width: 70px;
+
+            height: 4px;
+
+            background: #ffb703;
+
+            margin: 10px auto;
+
+            border-radius: 5px;
         }
 
-        .button:hover {
-            background: #a93226;
-        }
+        /* WELCOME */
 
-        /* Home */
         .welcome {
-            text-align: center;
             background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px #ddd;
+
+            padding: 40px;
+
+            text-align: center;
+
+            border-radius: 20px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+
+            transition: 0.4s;
+        }
+
+        .welcome:hover {
+            transform: translateY(-8px);
         }
 
         .welcome p {
-            max-width: 700px;
+            font-size: 18px;
+
+            max-width: 750px;
+
             margin: auto;
         }
 
-        /* Menu */
+        /* MENU */
+
         .menu {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 25px;
         }
 
         .card {
             background: white;
-            width: 280px;
-            padding: 25px;
+
+            padding: 30px 20px;
+
             text-align: center;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px #ccc;
-            transition: 0.3s;
+
+            border-radius: 20px;
+
+            box-shadow: 0 7px 20px rgba(0,0,0,0.1);
+
+            transition: 0.4s;
+
+            animation: cardAppear 1s ease;
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 6px 15px #bbb;
+            transform:
+                translateY(-12px)
+                scale(1.03);
+
+            box-shadow:
+                0 15px 30px rgba(0,0,0,0.2);
         }
 
         .food-icon {
-            font-size: 45px;
-            margin-bottom: 10px;
+            font-size: 60px;
+
+            margin-bottom: 15px;
+
+            animation: foodFloat 3s infinite ease-in-out;
         }
 
         .card h3 {
-            color: #7b1e1e;
+            color: #8b2c1c;
+
+            font-size: 22px;
+
             margin-bottom: 10px;
         }
 
+        .card p {
+            color: #666;
+        }
+
         .price {
-            font-size: 20px;
+            color: #e67e22 !important;
+
+            font-size: 22px;
+
             font-weight: bold;
-            color: #c0392b;
-            margin: 10px;
+
+            margin: 15px;
         }
 
-        /* About */
+        /* ABOUT */
+
         .about {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff,
+                    #fff1dc
+                );
+
+            padding: 45px;
+
+            border-radius: 20px;
+
             text-align: center;
-            box-shadow: 0 3px 10px #ddd;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+
+            font-size: 18px;
         }
 
-        /* Booking Form */
+        /* BOOKING */
+
         .booking {
-            max-width: 600px;
+            max-width: 650px;
+
             margin: auto;
+
             background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px #ccc;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .booking input,
         .booking select {
             width: 100%;
-            padding: 12px;
+
+            padding: 14px;
+
             margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+
+            border: 2px solid #eee;
+
+            border-radius: 10px;
+
             font-size: 15px;
+
+            transition: 0.3s;
+        }
+
+        .booking input:focus,
+        .booking select:focus {
+            border-color: #e67e22;
+
+            outline: none;
+
+            box-shadow:
+                0 0 8px rgba(230,126,34,0.3);
         }
 
         .booking button {
             width: 100%;
-            padding: 13px;
-            margin-top: 10px;
-            background: #7b1e1e;
-            color: white;
+
+            padding: 14px;
+
+            margin-top: 15px;
+
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #8b2c1c,
+                    #e67e22
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
             cursor: pointer;
+
+            transition: 0.4s;
         }
 
         .booking button:hover {
-            background: #a93226;
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 8px 18px rgba(0,0,0,0.2);
         }
 
-        /* Contact */
+        /* CONTACT */
+
         .contact-info {
-            text-align: center;
-            margin-top: 25px;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
+
+            padding: 35px;
+
+            text-align: center;
+
+            border-radius: 20px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .contact-info p {
-            margin: 8px;
+            margin: 12px;
+
+            font-size: 17px;
         }
 
-        /* Footer */
+        /* FOOTER */
+
         footer {
             background: #3d1717;
+
             color: white;
+
             text-align: center;
-            padding: 22px;
-            margin-top: 20px;
+
+            padding: 30px;
         }
 
-        /* Mobile Responsive */
+        footer span {
+            color: #ffb703;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes headerAppear {
+
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideDown {
+
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes foodFloat {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* MOBILE */
+
         @media (max-width: 600px) {
 
+            header {
+                min-height: 45vh;
+            }
+
             header h1 {
-                font-size: 26px;
+                font-size: 35px;
             }
 
             header p {
-                font-size: 14px;
+                font-size: 16px;
             }
 
             nav a {
-                display: block;
-                margin: 8px;
+                display: inline-block;
+
+                margin: 6px 8px;
             }
 
             section {
-                padding: 30px 15px;
-            }
-
-            .card {
-                width: 100%;
+                padding: 45px 15px;
             }
 
             h2 {
-                font-size: 24px;
+                font-size: 28px;
             }
+
+            .about,
+            .welcome {
+                padding: 25px;
+            }
+
         }
+
     </style>
+
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>🌶️ Spice Garden</h1>
-        <p>Authentic Taste • Fresh Ingredients • Happy Moments</p>
+    <!-- HEADER -->
 
-        <a class="button" href="#menu">View Menu</a>
+    <header>
+
+        <h1>🌶️ Spice Garden</h1>
+
+        <p>
+            Authentic Taste • Fresh Ingredients • Happy Moments
+        </p>
+
+        <a
+            class="button"
+            href="#menu"
+        >
+            Explore Our Menu
+        </a>
+
     </header>
 
 
-    <!-- Navigation -->
+    <!-- NAVIGATION -->
+
     <nav>
+
         <a href="#home">Home</a>
+
         <a href="#menu">Menu</a>
+
         <a href="#about">About</a>
+
         <a href="#booking">Book a Table</a>
+
         <a href="#contact">Contact</a>
+
     </nav>
 
 
-    <!-- Home -->
+    <!-- HOME -->
+
     <section id="home">
 
         <div class="welcome">
@@ -272,37 +539,55 @@
             <h2>Welcome to Spice Garden</h2>
 
             <p>
-                Experience delicious Indian cuisine prepared with
-                fresh ingredients and traditional flavors.
-                Enjoy great food with your family and friends.
+                Discover delicious Indian cuisine prepared
+                with fresh ingredients, traditional spices
+                and lots of love.
             </p>
+
+            <br>
+
+            <a
+                class="button"
+                href="#booking"
+            >
+                Book Your Table
+            </a>
 
         </div>
 
     </section>
 
 
-    <!-- Menu -->
+    <!-- MENU -->
+
     <section id="menu">
 
         <h2>Our Popular Menu</h2>
 
         <div class="menu">
 
+
             <div class="card">
 
-                <div class="food-icon">🍛</div>
+                <div class="food-icon">
+                    🍛
+                </div>
 
                 <h3>Chicken Biryani</h3>
 
                 <p>
-                    Traditional aromatic biryani
-                    with tender chicken.
+                    Aromatic basmati rice with
+                    tender chicken and special spices.
                 </p>
 
-                <p class="price">₹220</p>
+                <p class="price">
+                    ₹220
+                </p>
 
-                <a class="button" href="#booking">
+                <a
+                    class="button"
+                    href="#booking"
+                >
                     Order Now
                 </a>
 
@@ -311,18 +596,25 @@
 
             <div class="card">
 
-                <div class="food-icon">🥘</div>
+                <div class="food-icon">
+                    🥘
+                </div>
 
                 <h3>Paneer Butter Masala</h3>
 
                 <p>
-                    Soft paneer cooked in rich
+                    Soft paneer in a rich
                     creamy tomato gravy.
                 </p>
 
-                <p class="price">₹180</p>
+                <p class="price">
+                    ₹180
+                </p>
 
-                <a class="button" href="#booking">
+                <a
+                    class="button"
+                    href="#booking"
+                >
                     Order Now
                 </a>
 
@@ -331,18 +623,25 @@
 
             <div class="card">
 
-                <div class="food-icon">🍕</div>
+                <div class="food-icon">
+                    🍕
+                </div>
 
                 <h3>Veg Pizza</h3>
 
                 <p>
-                    Fresh vegetables, cheese
+                    Fresh vegetables, melted cheese
                     and our special sauce.
                 </p>
 
-                <p class="price">₹200</p>
+                <p class="price">
+                    ₹200
+                </p>
 
-                <a class="button" href="#booking">
+                <a
+                    class="button"
+                    href="#booking"
+                >
                     Order Now
                 </a>
 
@@ -351,29 +650,38 @@
 
             <div class="card">
 
-                <div class="food-icon">🍜</div>
+                <div class="food-icon">
+                    🍜
+                </div>
 
                 <h3>Veg Noodles</h3>
 
                 <p>
-                    Delicious noodles with fresh
-                    vegetables and special spices.
+                    Fresh vegetables and noodles
+                    tossed with special spices.
                 </p>
 
-                <p class="price">₹150</p>
+                <p class="price">
+                    ₹150
+                </p>
 
-                <a class="button" href="#booking">
+                <a
+                    class="button"
+                    href="#booking"
+                >
                     Order Now
                 </a>
 
             </div>
+
 
         </div>
 
     </section>
 
 
-    <!-- About -->
+    <!-- ABOUT -->
+
     <section id="about">
 
         <h2>About Us</h2>
@@ -381,13 +689,16 @@
         <div class="about">
 
             <p>
-                Spice Garden is a family-friendly restaurant
-                serving delicious Indian dishes.
+                Spice Garden is a modern family-friendly
+                restaurant offering delicious Indian cuisine.
             </p>
 
+            <br>
+
             <p>
-                Our goal is to provide fresh food,
-                quality service and a memorable dining experience.
+                We believe great food brings people together.
+                Our mission is to provide fresh food,
+                friendly service and a memorable experience.
             </p>
 
         </div>
@@ -395,7 +706,8 @@
     </section>
 
 
-    <!-- Booking -->
+    <!-- BOOKING -->
+
     <section id="booking">
 
         <h2>Book a Table</h2>
@@ -454,7 +766,7 @@
                 </select>
 
                 <button type="submit">
-                    Book a Table
+                    🍽️ Reserve My Table
                 </button>
 
             </form>
@@ -464,18 +776,27 @@
     </section>
 
 
-    <!-- Contact -->
+    <!-- CONTACT -->
+
     <section id="contact">
 
         <h2>Contact Us</h2>
 
         <div class="contact-info">
 
-            <p>📍 Main Road, Bengaluru</p>
+            <p>
+                📍 Main Road, Bengaluru
+            </p>
 
-            <p>📞 +91 98765 43210</p>
+            <p>
+                📞 +91 98765 43210
+            </p>
 
-            <p>✉️ spicegarden@example.com</p>
+            <p>
+                ✉️ spicegarden@example.com
+            </p>
+
+            <br>
 
             <a
                 class="button"
@@ -489,15 +810,16 @@
     </section>
 
 
-    <!-- Footer -->
+    <!-- FOOTER -->
+
     <footer>
 
         <p>
-            © 2026 Spice Garden Restaurant
+            © 2026 <span>Spice Garden</span> Restaurant
         </p>
 
         <p>
-            All Rights Reserved
+            Fresh Food • Great Taste • Happy Moments
         </p>
 
     </footer>
